@@ -1,0 +1,32 @@
+{{define "ulf"}}
+<style>
+</style>
+  <form enctype="multipart/form-data" action="/uploadfile" method="POST" method="GET">
+              <div class="input-group mb-3">
+                <div class="custom-file" >
+                <input style="font-size:12px" class="input-group-text" id="inputGroupFileAddon02" type="submit"/><br>
+                &nbsp; 
+                 <input style="font-size:12px" type="file" name="uploadfile" id="inputGroupFile02" Required/>
+                  <label  for="inputGroupFile02" aria-describedby="inputGroupFileAddon02"></label>
+                
+                 </div>
+                <div class="input-group-append"> 
+                </div>
+              </div>
+                </div>
+            </form> 
+
+            <script>
+   $('#chooseFile').bind('change', function () {
+  var filename = $("#chooseFile").val();
+  if (/^\s*$/.test(filename)) {
+    $(".file-upload").removeClass('active');
+    $("#noFile").text("No file chosen..."); 
+  }
+  else {
+    $(".file-upload").addClass('active');
+    $("#noFile").text(filename.replace("C:\\fakepath\\", "")); 
+  }
+});
+  </script>
+   {{end}}

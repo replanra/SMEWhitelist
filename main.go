@@ -1,12 +1,17 @@
 package main
 
 import (
-	"RA/entities/client"
+	"newWhitelist/entities/client"
+	"newWhitelist/entities/upload"
+	"newWhitelist/entities/user"
+   
+
 	"log"
 	"net/http"
 	"os"
 
 	"github.com/joho/godotenv"
+	
 )
 
 func main() {
@@ -16,18 +21,55 @@ func main() {
 		log.Fatal("Error loading .env file")
 	}
 	port := os.Getenv("PORT")
-	//log.Fatal(http.ListenAndServe(port, mux))
-	//Used port := os.Getenv("PORT")
-	//"PORT" variable name na ansa .env file
-	//kapag nasa local sya nag run, yung 8080 na port ang kukunin nya. yun yung nasa .env na file
-	//then kapag sa heroku or other platform naman, kung anong ibinigay nilang port
-	//ay maadopt na ni application, so there's no need to manually update the port kapag inilagay mo sa ibang hosting
 
 	log.Println("Server Started...")
 	log.Println("Current Port: " + port)
+	mux.Handle("/public/", http.StripPrefix("/public", http.FileServer(http.Dir("public"))))
+	mux.Handle("/templates/", http.StripPrefix("/templates", http.FileServer(http.Dir("templates"))))
 
-	mux.HandleFunc("/burn", client.GetAllClients)
+	//end
+	//html
+	mux.Handle("/css/", http.StripPrefix("/css", http.FileServer(http.Dir("css"))))
+	mux.Handle("/js/", http.StripPrefix("/js", http.FileServer(http.Dir("js"))))
+	mux.Handle("/json-browse/", http.StripPrefix("/json-browse", http.FileServer(http.Dir("json-browse"))))
+
+
+	mux.HandleFunc("/exit", client.Exit)
+
+
+
+
+    mux.HandleFunc("/update", client.UpdateClientProcess)
+	mux.HandleFunc("/insert", client.InsertClientProcess)
+    mux.HandleFunc("/delete", client.DeleteClientProcess)
+	mux.HandleFunc("/uf", client.Uf)
+	mux.HandleFunc("/login", client.Login)
+	mux.HandleFunc("/allmember", client.GetAllMember)
+	mux.HandleFunc("/checkclient", client.CheckList)
+	mux.HandleFunc("/cl", client.CK)
+
+
+
+
+	mux.HandleFunc("/uploadfile", upload.UploadFile)
+	mux.HandleFunc("/upload", upload.UploadForm)
+	mux.HandleFunc("/log", user.SamLogin)
+	mux.HandleFunc("/logg", user.SamLogg)
+	
+
+
+
+	
+    mux.HandleFunc("/login/user/process", user.LoginUserProcess)
+	mux.HandleFunc("/password", user.Password)
+	mux.HandleFunc("/register/user", user.RegisterUserForm)
+	mux.HandleFunc("/registertest", user.RegisterUserProcessTest)
+	
+	
+
+	
 	if err := http.ListenAndServe(":"+port, mux); err != nil {
 		panic(err)
 	}
 }
+ 
