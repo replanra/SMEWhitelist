@@ -45,7 +45,7 @@ func main() {
 	mux.HandleFunc("/uploadfile", client.Uf)
 	mux.HandleFunc("/", client.Login)
 	mux.HandleFunc("/allmember", client.GetAllMember)
-	mux.HandleFunc("/checkclient", client.CheckList)
+	mux.HandleFunc("/client", client.CheckList)
 	mux.HandleFunc("/cl", client.CK)
 
 

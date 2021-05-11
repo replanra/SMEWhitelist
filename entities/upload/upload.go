@@ -98,7 +98,7 @@ func UploadFile(w http.ResponseWriter, req *http.Request) {
 			keysBody := []byte(parsedJson)
 			keys := make([]MemberList, 0)
 			json.Unmarshal(keysBody, &keys)
-			_, err = config.DB.Exec("INSERT INTO tblclient SELECT area, birthday, cid, centername, contact, flag, lengthofmembership, membername, newbranchcode, newcid, recognizeddate, sn, unit FROM json_populate_recordset(NULL::tblclient,  '" + string(keysBody) + "') ON CONFLICT (newcid) DO NOTHING ")
+			_, err = config.DB.Exec("INSERT INTO tblclient SELECT area, birthday, cid, centername, contact, flag, lengthofmembership, membername, newbranchcode, newcid, recognizeddate, sn, unit FROM json_populate_recordset(NULL::tblclient,  '" + string(keysBody) + "') ON CONFLICT (cid) DO NOTHING ")
 			if extension != ".csv" {
 				//w.Write([]byte("It's not CSV file"))
 				config.TPL.ExecuteTemplate(w, "invalidfile", nil)

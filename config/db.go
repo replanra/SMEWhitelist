@@ -9,11 +9,11 @@ import (
 
 //Local DB Connection
 const (
-	host     = "localhost"
+	host     = "ec2-54-147-126-202.compute-1.amazonaws.com"
 	port     = 5432
-	user     = "postgres"
-	password = "admin"
-	dbname   = "CARDNGO"
+	user     = "jkrumqelyzvjko"
+	password = "7cb7730b4fd79d4fd42303874880a8b0d9900a8308bb4bf4786498ae2645d4b7"
+	dbname   = "dncm7pakkq5vl"
 )
 
 var DB *sql.DB
@@ -22,7 +22,7 @@ var DB *sql.DB
 //sslmode=disable kapag sa local
 func init() {
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
-		"password=%s dbname=%s sslmode=disable",
+		"password=%s dbname=%s sslmode=require",
 		host, port, user, password, dbname)
 	var err error
 	DB, err = sql.Open("postgres", psqlInfo)

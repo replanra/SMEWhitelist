@@ -82,11 +82,11 @@ func Update(r *http.Request) (Member, error) {
 }
 
 func DeleteClient(r *http.Request) error {
-	cid := r.FormValue("cid")
-	if cid == "" {
+	newcid := r.FormValue("newcid")
+	if newcid == "" {
 		return errors.New("400. Bad Request.")
 	}
-	_, err := config.DB.Exec("DELETE FROM tblclient WHERE cid=$1;", cid)
+	_, err := config.DB.Exec("DELETE FROM tblclient WHERE newcid=$1;", newcid)
 	if err != nil {
 		return errors.New("500. Internal Server Error")
 	}
