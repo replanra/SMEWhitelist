@@ -1,0 +1,290 @@
+{{define "datatable"}}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css">
+    
+    <!---------------------Bootstrap CSS ---------------->
+    <link rel="stylesheet" href="public/css/bootstrap.min.css">
+    <!------------------------ Style------------------------>
+    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="public/css/modal.css">
+    <link rel="stylesheet" href="public/css/maintable.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+  [data-order],
+[data-lazy] {
+  transition: opacity 1s;
+}
+
+.lazy-loading {
+  opacity: 0;
+}
+
+/* Sample layout code */
+section {
+  width: 100%;
+  height: 250px;
+  border: 2px solid red;
+  background: #ddd;
+  margin-bottom: 30px;
+  padding: 20px;
+}
+
+
+
+
+  </style>
+
+  </head>
+  <body>
+   {{template "sidebar"}}
+    <main style="position:fixed;">
+      <div class="site-section">
+        <div class="container" >
+          <div class="row justify-content-center">
+           <div class="col-md-15" data-search="true" style="overflow-y:auto;" style="overflow-y: scroll;" >
+             <table id="example" id="datatable" data-toggle="table" class="lazy-loading" data-order="300" data-resizable="true"  data-height="1000" data-pagination="true" class="display"  class="table" style="width:175%; height:40px; border: 3px solid black;border-collapse: collapse;padding: 3px; text-align: center;" rules="all">
+                                <thead>
+                                       <tr>
+                                            <th>Update</th>
+                                            <th>Delete</th>
+                                            <th>Flag</th>
+                                            <th>SN</th>
+                                            <th>Area</th>
+                                            <th>Unit</th>
+                                            <th>CID</th>
+                                            <th>CenterName</th>
+                                            <th>Member's Name</th>
+                                            <th>Recognized Date</th>
+                                            <th>Birthday</th>
+                                            <th>Length of Membership</th>
+                                            <th>New Branch Code</th>
+                                            <th>NewCustomer ID</th>
+                                            <th>Contact</th>
+                                        </tr>
+                                    </thead>
+                              <tbody>
+                                    {{ range .}}
+                                    <tr>
+                                        <td><center>    
+                                      <button type="button"  onclick="document.getElementById('id01').style.display='block'" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"><i class="far fa-edit"></i> </button>
+                                        </center></td>
+                                        <td><center>
+                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
+                                                <a href="/delete?cid={{.CID}}" style="color:white;"><i class="far fa-trash-alt"></i>
+                                            </button>
+                                        </center></td>
+                                        <td>{{.Flag}}</td>
+                                        <td>{{.SN}} </td>
+                                        <td>{{.Area}} </td>
+                                        <td>{{.Unit}}</td>
+                                        <td>{{.CID}}</td>
+                                        <td>{{.CenterName}}</td>
+                                        <td>{{.MemberName}}</td>
+                                        <td>{{.RecognizedDate}} </td>
+                                        <td>{{.Birthday}} </td>
+                                        <td>{{.LengthOfMembership}}</td>
+                                        <td>{{.NewBranchCode}}</td>
+                                        <td>{{.NewCID}}</td>
+                                        <td>{{.Contact}}</td>
+                                    </tr>
+                                    {{ end}}
+                     </tbody>
+                </table>
+            </div>
+       </div>
+                    
+                                      <div id="id01" class="modal">
+		                                	<form method="POST" class="modal-content animate" action="/update" name="myForm">
+			                              	<div class="imgcontainer">
+					                            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+			                               	</div>
+       
+       
+	<!--<img class="img-logo" src="../public/static/img/register.png" alt="FDS ASYA PHILIPPINES INC. Logo" style="margin-left:125px;height:150px;width:150px;">-->
+				                  <div class="container">
+				<!--<img class="img-logo" src="../public/static/img/wl.png" alt="FDS ASYA PHILIPPINES INC. Logo" style="height:200px;width:300px;align:center;">-->
+				                     <h1 Style="margin-top:2%">Member's Information</h1>
+
+						<div class="row">
+ <span class="ps">
+    <input style="size:1vw;"  class="clean-slide"  id="membername" type="text" placeholder="membername" name="membername" /><label for="membername">MemberName :</label>
+  </span>
+  <span class="ps">
+    <input class="clean-slide"  id='flag'type="text" placeholder="flag" name="flag"/><label for="flag">Flag :</label>
+  </span>
+
+
+
+  <span class="sp">
+    <input class="clean-slide"  id="lengthofmembership" type="text" placeholder="lengthofmembership" name="lengthofmembership" /><label for="lengthofmembership">LOMembership</label>
+  </span>
+
+   <span class="sp">
+    <input  class="clean-slide" id='sn' type="text" placeholder="sn" name="sn" /><label for="sn">SN:</label>
+  </span>
+
+
+  <span class="ps">
+    <input class="clean-slide" id='centername'type="text" placeholder="centername" name="centername" /><label for="centername">CenterName :</label>
+  </span>
+
+  <span class="ps">
+    <input class="clean-slide" id='newcid' type="text" placeholder="newcid" name="newcid" /><label for="newcid">NewCID :</label>
+  </span>
+
+
+
+  <span class="sp">
+    <input class="clean-slide" id="recognizeddate" type="text" placeholder="recognizeddate" name="recognizeddate" /><label for="recognizeddate">RecognizedDate :</label>
+  </span>
+  <span class="sp">
+    <input class="clean-slide" id='cid' type="text" placeholder="cid" name='cid' /><label for="cid">CID:</label>
+  </span>
+
+
+
+  <span class="ps">
+    <input class="clean-slide" id="birthday" type="text" placeholder="birthday" name="birthday" /><label for="birthday">Birthday :</label>
+  </span>
+  <span class="ps">
+    <input class="clean-slide" id='contact'type="text" placeholder="contact" name="contact" /><label for="contact">Contact :</label>
+  </span>
+
+
+
+   <span class="sp">
+    <input class="clean-slide" id="area" type="text" placeholder="area" name="area" /><label for="area">Area :</label>
+  </span>
+  <span class="sp">
+    <input class="clean-slide" id='unit'type="text" placeholder="unit" name="unit" /><label for="unit">Unit :</label>
+  </span>
+  <span class="sp">
+    <input class="clean-slide" id='newbranchcode' type="text" placeholder="newbranchcode" name="newbranchcode" /><label for="newbranchcode">NewBranchCode :</label>
+  </span>
+   <br>
+  <button class="update">Update</button>
+  
+</div>
+		
+				</div>
+			</form>
+		</div>
+    
+        
+            </div>
+        </div>
+     </div>
+ </div> 
+</main>
+    
+   <script>
+            $('table tbody tr  td').on('click',function(){
+               // $("#exampleModalCenter").modal("show");
+                $("#flag").val($(this).closest('tr').children()[2].textContent);
+                $("#sn").val($(this).closest('tr').children()[3].textContent);
+                $("#area").val($(this).closest('tr').children()[4].textContent);
+                $("#unit").val($(this).closest('tr').children()[5].textContent);
+                $("#cid").val($(this).closest('tr').children()[6].textContent);
+                $("#centername").val($(this).closest('tr').children()[7].textContent);
+                $("#membername").val($(this).closest('tr').children()[8].textContent);
+                $("#recognizeddate").val($(this).closest('tr').children()[9].textContent);
+                $("#birthday").val($(this).closest('tr').children()[10].textContent);
+                $("#lengthofmembership").val($(this).closest('tr').children()[11].textContent);
+                $("#newbranchcode").val($(this).closest('tr').children()[12].textContent);
+                $("#newcid").val($(this).closest('tr').children()[13].textContent);
+                $("#contact").val($(this).closest('tr').children()[14].textContent);
+            });
+        </script>
+
+               <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.flash.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
+    <script src="public/js/popper.min.js"></script>
+    <script src="public/js/main.js"></script>
+
+    
+    <script>
+    function initLazyLoading() {
+  if ($("[data-order]").length) {
+    setTimeout(function () {
+      loadItemsInOrder($("[data-order]"), 0.5);
+    }, 1);
+  }
+}
+
+function loadItemsInOrder(itemsArray, delay) {
+  var delayToUse = delay ? delay : 0.0;
+  var sortedItems = itemsArray.sort(function (a, b) {
+    var firstItemOrder = parseInt($(a).data("order"), 10);
+    var secondItemOrder = parseInt($(b).data("order"), 10);
+    return firstItemOrder - secondItemOrder;
+  });
+
+  sortedItems.each(function (i, obj) {
+    $(sortedItems[i + 0]).removeClass("lazy-loading");
+    $(sortedItems[i + 0]).css("transition-delay", (i + 0) * delayToUse + "s");
+  });
+
+  $(sortedItems[0]).removeClass("lazy-loading");
+}
+
+//https://github.com/protonet/jquery.inview
+function initInView() {
+  $("[data-lazy]").on("inview", function (event, visible) {
+    if (visible == true) {
+      $(this).removeClass("lazy-loading");
+    } else {
+      // element has gone out of viewport
+    }
+  });
+}
+
+$(function () {
+  initLazyLoading();
+  initInView();
+});
+
+    </script>
+
+
+    <script>
+        $(document).ready(function() {
+        $('#example').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'print'
+            ]
+            } );
+        } );
+    </script>
+  </body>
+</html>
+{{end }}

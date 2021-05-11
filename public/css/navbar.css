@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+}
+
+body{
+
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.wrapper{
+  display: flex;
+  position: relative;
+}
+
+.wrapper .sidebar{
+  -webkit-box-shadow: -6px 7px 20px 3px rgba(0,0,0,0.44);
+  -moz-box-shadow: -6px 7px 20px 3px rgba(0,0,0,0.44);
+  box-shadow: -6px 7px 20px 3px rgba(0,0,0,0.44);
+  background: linear-gradient(369deg,rgb(90 20 20), rgb(144 0 0));
+
+  width: 200px;
+  height: 100%;
+  
+  padding: 30px 0px;
+  position: fixed;
+  
+}
+
+.wrapper .sidebar h2{
+  color: #d2efd3;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.wrapper .sidebar ul li{
+  padding: 15px;
+  border-bottom: 1px solid #bdb8d7;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+ 
+}    
+
+.wrapper .sidebar ul li a{
+  color: #d3efd3;
+  display: block;
+  text-decoration: none;
+}
+
+.wrapper .sidebar ul li a .fas{
+  width: 25px;
+}
+
+.wrapper .sidebar ul li:hover{
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, #7b0707, #d2efd3);
+  border-image-slice: 1;
+  color: #606360;
+}
+    
+.wrapper .sidebar ul li:hover a{
+  font-weight: 500 !important;
+}
+
+ 
+.wrapper .sidebar .footer{
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  
+  font-size: 0.6rem;
+}
+
+.wrapper .sidebar .social_media a{
+  display: block;
+  width: 40px;
+  background: #594f8d;
+  height: 40px;
+  line-height: 45px;
+  text-align: center;
+  margin: 0 5px;
+  color: #bdb8d7;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.wrapper .main_content{
+  width: 100%;
+  margin-left: 250px;
+}
+
+.wrapper .main_content .header{
+  padding: 20px;
+  background: #fff;
+  color: #717171;
+  border-bottom: 1px solid #e0e4e8;
+}
+
+.wrapper .main_content .info{
+  margin: 20px;
+  color: #717171;
+  line-height: 25px;
+}
+
+.wrapper .main_content .info div{
+  margin-bottom: 20px;
+}
+
+.footer {
+  
+  text-align: center;
+  color: #d2efd3;
+
+}
+
+@media (max-height: 500px){
+  .social_media{
+    display: none !important;
+  }
+}

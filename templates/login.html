@@ -1,0 +1,365 @@
+{{ define "login"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login V14</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vend/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vend/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vend/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vend/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vend/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vend/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="public/css/util.css">
+	<link rel="stylesheet" type="text/css" href="public/css/main.css">
+	<link rel="stylesheet" type="text/css" href="public/css/dialog.css">
+	<link rel="stylesheet" type="text/css" href="public/css/slide.css">
+<!--===============================================================================================-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* Full-width input fields */
+
+
+/* Set a style for all buttons */
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* Center the image and position the close button
+
+  margin: 24px 0 12px 0; */
+.imgcontainer {
+  position: relative;
+  float: left;
+  
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+ /* padding-top: 16px;*/
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity
+    padding-top: 60px; */
+
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 40%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+</style>
+</head>
+<script>
+
+function validateForm() {
+  var a = document.forms["myForm"]["fname"].value;
+  var b = document.forms["myForm"]["lname"].value;
+  var c = document.forms["myForm"]["branch"].value;
+  var d = document.forms["myForm"]["insti"].value;
+  var e = document.forms["myForm"]["username"].value;
+  var f = document.forms["myForm"]["textareaID"].value;
+  if (a == "" || a == null || b == "" || b == null || c == "" || c == null || d == "" || d == null || e == "" || e == null || f == "" || f == null ) {
+    alert("Empty fields must be filled out");
+	 //document.getElementById("myDialog").showModal(); 
+	
+    return false;
+  }
+}
+</script>
+<body>
+	<div class="limiter">
+					<div class="codinfox-changing-keywords con">
+        <strong>
+            <p class="hidden title">Welcome to Whitelist<br>
+            <span style="font-size: small;"></span>
+            </p><br/> 
+          
+
+        </strong>
+    </div>
+
+<div class="codinfox-sidebar-description sidebar-personal-info-section">
+</div>
+<!--end-->
+		<div class="container-login100">
+        	<img class="img-logo" src="../public/images/fdsap-logo.png" alt="FDS ASYA PHILIPPINES INC. Logo" style="margin-left:125px;height:250px;width:250px;">
+				<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55 shadow-lg"style = "margin-top:250px; background-color: #fff;">
+					<form method="POST" class="login100-form validate-form flex-sb flex-w" action="/login/user/process" >
+						<span class="login100-form-title p-b-32">
+						</span>
+						<span class="txt1 p-b-11"></span>
+						
+						<div class="wrapper">
+							<fieldset class="formRow">
+								<div class="formRow--item">
+									<label for="uname" class="formRow--input-wrapper js-inputWrapper">
+										<input type="text"  class="formRow--input js-input input-field" id="username" name="username"placeholder="Username" required>
+									</label>
+								</div>
+							</fieldset>
+						</div>
+						<div class="wrapper">
+							<fieldset class="formRow">
+								<div class="formRow--item">
+									<label for="pass" class="formRow--input-wrapper js-inputWrapper">
+										<input type="password" class="formRow--input js-input" id="password" name="password"placeholder="Password" required>
+									</label>
+								</div>
+							</fieldset>
+						</div>
+						<!--<div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">					
+							<input class="input100" type="text" name="username" id="username">
+							<label for="username">Username</label>
+							<span class="focus-input100"></span>
+						</div>
+						
+						<span class="txt1 p-b-11">
+							
+						</span>
+						<div class="wrap-input100 validate-input m-b-12" data-validate = "Password is required">
+							<span class="btn-show-pass">
+								<i class="fa fa-eye"></i>
+							</span>
+							<input class="input100" type="password" name="password" id="password">
+							<label for="password">Password</label>
+							<span class="focus-input100"></span>
+						</div>
+						<div class="flex-sb-m w-full p-b-48"></div>-->
+							<div>
+								<!--<a href="#" class="txt3">
+									Register
+								</a>-->
+							</div>
+						<div class="container-login100-form-btn">
+							<center>  
+								<p>Don't have an Account?
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<b><a class="txt3" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" id="myBtn2"> Register Now!</a></b>
+								</p>
+								<button class="login100-form-btn">
+									Login
+								</button>
+							</center>
+						</div>
+  
+					</form>
+			</div>
+		</div>
+
+		<!--Modal-->
+		<div id="id01" class="modal">
+			<form method="POST" class="modal-content animate" action="/registertest" onsubmit="return validateForm()" name="myForm">
+				<div class="imgcontainer">
+				<img class="img-logo" src="../public/images/noname.png" alt="FDS ASYA PHILIPPINES INC. Logo"  style="width:500px;height:200px;" >
+					<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+					
+				</div>
+	<!--<img class="img-logo" src="../public/static/img/register.png" alt="FDS ASYA PHILIPPINES INC. Logo" style="margin-left:125px;height:150px;width:150px;">-->
+				<div class="container">
+				<!--<img class="img-logo" src="../public/static/img/wl.png" alt="FDS ASYA PHILIPPINES INC. Logo" style="height:200px;width:300px;align:center;">-->
+					<div class="wrapper">
+	
+						<fieldset class="formRowModal">
+							<div class="formRowModal--item">
+								<label for="fname" class="formRowModal--input-wrapper js-inputWrapperModal">
+									<input type="text" class="formRowModal--input js-input" id="fname" name="fname" placeholder="First Name">
+								</label>
+							</div>
+						</fieldset>
+					</div>
+					<div class="wrapper">
+						<fieldset class="formRowModal">
+							<div class="formRowModal--item">
+								<label for="lname" class="formRowModal--input-wrapper js-inputWrapperModal">
+									<input type="text" class="formRowModal--input js-input" id="lname" name="lname" placeholder="Last Name">
+								</label>
+							</div>
+						</fieldset>
+					</div>
+						
+					<div class="wrapper">
+						<fieldset class="formRowModal">
+							<div class="formRowModal--item">
+								<label for="branch" class="formRowModal--input-wrapper js-inputWrapperModal">
+									<input type="text" class="formRowModal--input js-input" id="branch" name="branch" placeholder="Branch">
+								</label>
+							</div>
+						</fieldset>
+					</div>
+					<div class="wrapper">
+						<fieldset class="formRowModal">
+							<div class="formRowModal--item">
+								<label for="institution" class="formRowModal--input-wrapper js-inputWrapperModal">
+									<input type="text" class="formRowModal--input js-input" id="insti" name="insti"placeholder="Institution">
+								</label>
+							</div>
+						</fieldset>
+					</div>
+				<div class="wrapper">
+						<fieldset class="formRowModal">
+							<div class="formRowModal--item">
+								<label for="username" class="formRowModal--input-wrapper js-inputWrapperModal">
+									<input type="text" class="formRowModal--input js-input"  name="username" placeholder="Username">
+								</label>
+							</div>
+						</fieldset>
+					</div>
+					<div class="wrapper">
+						<fieldset class="formRowModal">
+							<div class="formRowModal--item">
+								<label for="pass" class="formRowModal--input-wrapper js-inputWrapperModal">
+									<input type="password" class="formRowModal--input js-input" id="textareaID" name="textareaID" placeholder="Password">
+								</label>
+							</div>
+						</fieldset>
+					</div>
+					<br>
+				<button class="login100Modal-form-btn">Register</button>
+				<p style="text-align:center;margin-top:10px;color:#4b4e52;">Do you have already an Account? <a style="margin-top:10px;color:#4b4e52;" href="/samplelogin"> Login Now!</a></p>
+				</div>
+
+			</form>
+		</div>
+		<!--End Modal 
+		<dialog  id="myDialog">This is a dialog window</dialog>-->
+</div>
+	<div id="dropDownSelect1"></div>
+<!--===============================================================================================-->
+	<script src="vend/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vend/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vend/bootstrap/js/popper.js"></script>
+	<script src="vend/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vend/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vend/daterangepicker/moment.min.js"></script>
+	<script src="vend/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vend/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+	<script src="js/input.js"></script>
+	<script src="js/modal.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script></body>
+<script>
+$('#textareaID').bind('input propertychange', function() {
+    if (this.value.length > 15) {
+        $("#textareaID").val($("#textareaID").val().substring(0,1000));
+        alert("You've reached the maximum number of characters.");
+    }
+});
+</script>
+
+</html>
+
+{{end}}
